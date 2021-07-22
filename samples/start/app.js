@@ -32,45 +32,30 @@ function usersRouter() {
   ]
 
   /* GET users listing. */
-  router.get("/", (
-    _req,
-    res
-  ) => {
+  router.get("/", (_req, res) => {
     res.render('user', { titleCounter: titleCounter++, messages })
   })
 
-  router.get('/time', (
-    req,
-    res
-  ) => {
+  router.get('/time', (_req, res) => {
     res.partials()
       .inner('#output', '/user/time.pug')
       .send()
   })
 
-  router.get('/title', (
-    req,
-    res
-  ) => {
+  router.get('/title', (_req, res) => {
     res.partials()
       .replace('#title', '/user/title.pug', { titleCounter: titleCounter++ })
       .send()
   })
 
-  router.get('/multi', (
-    req,
-    res
-  ) => {
+  router.get('/multi', (_req, res) => {
     res.partials()
       .inner('#output', '/user/time.pug')
       .replace('#title', '/user/title.pug', { titleCounter: titleCounter++ })
       .send()
   })
 
-  router.post('/messages', (
-    req,
-    res
-  ) => {
+  router.post('/messages', (req, res) => {
     const message = req.body.message
     if (!message || message.length === 0) {
       return res.partials()
