@@ -1,0 +1,12 @@
+form(
+  action="/users/messages",
+  method="post",
+  onSubmit="event.preventDefault();partial.form(this);"
+)
+  - if(err) 
+    ul.errors 
+      each error in err.errors
+        li=error.message
+
+  input(name="message", value=message) 
+  input(type="submit")
