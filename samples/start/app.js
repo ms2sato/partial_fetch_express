@@ -12,19 +12,13 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(partialRenderer())
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.use('/users', usersRouter())
+sampleRoutes(app)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-function usersRouter() {
-  const router = express.Router()
-
+function sampleRoutes(router) {
   let titleCounter = 0
   const messages = [
     'test1',
@@ -33,25 +27,25 @@ function usersRouter() {
 
   /* GET users listing. */
   router.get("/", (_req, res) => {
-    res.render('user', { titleCounter: titleCounter++, messages })
+    res.render('index', { titleCounter: titleCounter++, messages })
   })
 
   router.get('/time', (_req, res) => {
     res.partials()
-      .inner('#output', '/user/time.pug')
+      .inner('#output', '/sample/time.pug')
       .send()
   })
 
   router.get('/title', (_req, res) => {
     res.partials()
-      .replace('#title', '/user/title.pug', { titleCounter: titleCounter++ })
+      .replace('#title', '/sample/title.pug', { titleCounter: titleCounter++ })
       .send()
   })
 
   router.get('/multi', (_req, res) => {
     res.partials()
-      .inner('#output', '/user/time.pug')
-      .replace('#title', '/user/title.pug', { titleCounter: titleCounter++ })
+      .inner('#output', '/sample/time.pug')
+      .replace('#title', '/sample/title.pug', { titleCounter: titleCounter++ })
       .send()
   })
 
@@ -59,7 +53,7 @@ function usersRouter() {
     const message = req.body.message
     if (!message || message.length === 0) {
       return res.partials()
-        .replace('form', '/user/form.pug', {
+        .replace('form', '/sample/form.pug', {
           message, err: { errors: [{ message: 'message required' }] }
         })
         .send()
@@ -67,13 +61,11 @@ function usersRouter() {
 
     messages.push(message)
 
-    // return res.redirect('/users')
+    // return res.redirect('/')
 
     res.partials()
-      .appendChild('ul.messages', '/user/message.pug', { message })
-      .replace('form', '/user/form.pug')
+      .appendChild('ul.messages', '/sample/message.pug', { message })
+      .replace('form', '/sample/form.pug')
       .send()
   })
-
-  return router
 }

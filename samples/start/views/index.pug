@@ -1,5 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  include ./sample/title
+
+  button(onClick="partial('/time')") reload time
+  button(onClick="partial('/multi')") reload multiple
+
+  #output
+    include ./sample/time
+
+  h2 Sample Form
+
+  include ./sample/form
+
+  ul.messages
+    each message in messages
+      include ./sample/message
