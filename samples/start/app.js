@@ -25,7 +25,6 @@ function sampleRoutes(router) {
     'test2'
   ]
 
-  /* GET users listing. */
   router.get("/", (_req, res) => {
     res.render('index', { titleCounter: titleCounter++, messages })
   })

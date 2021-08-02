@@ -63,6 +63,8 @@ class PartialRenderer {
 }
 
 function partialRenderer(renderFunc = renderPug): express.RequestHandler {
+  // TODO: app.get('view engine') and choice renderFunc
+
   return (
     req: express.Request,
     res: express.Response,
