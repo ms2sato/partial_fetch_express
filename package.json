@@ -1,6 +1,6 @@
 {
   "name": "partial-fetch-express",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "partial fetch response middleware for express",
   "main": "build/index.js",
   "types": "build/index.d.ts",
