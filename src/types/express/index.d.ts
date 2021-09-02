@@ -1,9 +1,7 @@
-import { PartialRenderer } from "../../partial_renderer"
+declare type PartialRenderer = import('../../partial_renderer').PartialRenderer;
 
-declare global {
-  namespace Express {
-    interface Response {
-      partials: () => PartialRenderer
-    }
+namespace Express {
+  export interface Response {
+    partials: () => PartialRenderer
   }
 }
